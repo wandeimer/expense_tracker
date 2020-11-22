@@ -1,5 +1,4 @@
-
-import 'package:expense_tracker/Expense.dart';
+import 'package:expense_tracker/AddExpense.dart';
 import 'package:expense_tracker/ExpenseModel.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -43,7 +42,7 @@ class MyHomePage extends StatelessWidget {
                 } else {
                   index -= 1;
                   return Dismissible(
-                    key: Key(model.GetKey(index)),
+                    key: Key(model.getKey(index)),
                     onDismissed: (direction) {
                       model.removeAtIndex(index);
                       Scaffold.of(context).showSnackBar(
@@ -51,7 +50,7 @@ class MyHomePage extends StatelessWidget {
                       );
                     },
                     child: ListTile(
-                      title: Text(model.GetText(index)),
+                      title: Text(model.getText(index)),
                       leading: Icon(Icons.attach_money),
                       trailing: Icon(Icons.delete),
                     ),
@@ -65,7 +64,14 @@ class MyHomePage extends StatelessWidget {
         floatingActionButton: ScopedModelDescendant<ExpenseModel> (
           builder: (context, child, model) => FloatingActionButton(
             onPressed: () {
-              model.addExpense("Apple", 10);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return AddExpense(model);
+                  }
+                )
+              );
             },
             child: Icon(Icons.add),
       ),
