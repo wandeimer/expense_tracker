@@ -14,7 +14,7 @@ class ExpenseDB {
     return _database;
   }
 
-  ExpenseDB() {}
+  ExpenseDB();
 
   initialize() async {
     Directory documentsDir = await getApplicationDocumentsDirectory();
@@ -41,5 +41,10 @@ class ExpenseDB {
     Database db = await database;
     String dateAsString = dateTime.toString();
     db.rawInsert("INSERT INTO Expenses (name, date, price) VALUES (\"$name\", \"$dateAsString\", $price)");
+  }
+
+  Future<void> deleteExpense(int id) async {
+    Database db = await database;
+    db.rawDelete("DELETE FROM Expenses WHERE id = ?", ["$id"]);
   }
 }

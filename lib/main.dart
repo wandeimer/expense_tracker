@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
+  double totalExpense = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -30,24 +31,24 @@ class MyHomePage extends StatelessWidget {
       model: ExpenseModel(),
       child: Scaffold(
         appBar: AppBar(
-            title: Text(title),
-          ),
+          title: Text(title),
+        ),
         body: ScopedModelDescendant<ExpenseModel>(
           builder: (context, child, model) => ListView.separated(
               itemBuilder: (context, index) {
                 if (index == 0) {
+                  totalExpense = model.getTotalExpense();
                   return ListTile(
-                    title: Text("Total expense: 2000"),
+                    title: Text("Total expense: $totalExpense"),
                   );
                 } else {
                   index -= 1;
                   return Dismissible(
-                    key: Key(model.getKey(index)),
+                    key: UniqueKey(),
                     onDismissed: (direction) {
-                      model.removeAtIndex(index);
+                      model.deleteExpense(index);
                       Scaffold.of(context).showSnackBar(
-                        SnackBar(content: Text("Deleted record $index"))
-                      );
+                          SnackBar(content: Text("Deleted record $index")));
                     },
                     child: ListTile(
                       title: Text(model.getText(index)),
@@ -58,23 +59,41 @@ class MyHomePage extends StatelessWidget {
                 }
               },
               separatorBuilder: (context, index) => Divider(),
-              itemCount: model.recordsCount + 1
-          ),
+              itemCount: model.recordsCount + 1),
         ),
-        floatingActionButton: ScopedModelDescendant<ExpenseModel> (
-          builder: (context, child, model) => FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return AddExpense(model);
-                  }
-                )
-              );
-            },
-            child: Icon(Icons.add),
-      ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: ScopedModelDescendant<ExpenseModel>(
+          builder: (context, child, model) => Container(
+            child: Row(
+              children: <Widget> [
+                Align(
+                  alignment: Alignment.bottomLeft,
+                    child: FloatingActionButton(
+                      heroTag: null,
+                      onPressed: () {
+                        //Navigator.push(context, MaterialPageRoute(builder: (context) {return EditExpense(model);}));
+                      },
+                      child: Icon(Icons.edit),
+                    ),
+                ),
+                Spacer(
+                  flex: 1,
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    heroTag: null,
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return AddExpense(model);
+                      }));
+                    },
+                    child: Icon(Icons.add),
+                  ),
+                ),
+              ],
+            )
+          )
         ),
       ),
     );

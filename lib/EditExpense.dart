@@ -2,19 +2,19 @@ import 'package:expense_tracker/ExpenseModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class _AddExpenseState extends State<AddExpense> {
+class _EditExpenseState extends State<EditExpense> {
   double _price;
   String _name;
   ExpenseModel _model;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  _AddExpenseState(this._model);
+  _EditExpenseState(this._model);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add expense"),
+        title: Text("Edit expense"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -24,9 +24,9 @@ class _AddExpenseState extends State<AddExpense> {
             children: [
               TextFormField(
                 decoration: InputDecoration(
-                  icon: Icon(Icons.shopping_basket),
-                  hintText: "Bread",
-                  helperText: "Name of expense"
+                    icon: Icon(Icons.shopping_basket),
+                    hintText: "Bread",
+                    helperText: "Name of expense"
                 ),
                 onSaved: (value) {
                   _name = value;
@@ -54,11 +54,11 @@ class _AddExpenseState extends State<AddExpense> {
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    _model.addExpense(_name, _price);
+                    //_model.addExpense(_name, _price);
                     Navigator.pop(context);
                   }
                 },
-                child: Text("Add"),
+                child: Text("Accept changes"),
               )
             ],
           ),
@@ -69,11 +69,11 @@ class _AddExpenseState extends State<AddExpense> {
 
 }
 
-class AddExpense extends StatefulWidget {
+class EditExpense extends StatefulWidget {
   final ExpenseModel _model;
 
-  AddExpense(this._model);
+  EditExpense(this._model);
   @override
-  State<StatefulWidget> createState() => _AddExpenseState(_model);
+  State<StatefulWidget> createState() => _EditExpenseState(_model);
 
 }

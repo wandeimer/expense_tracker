@@ -3,11 +3,9 @@ import 'package:scoped_model/scoped_model.dart';
 import 'Expense.dart';
 
 class ExpenseModel extends Model {
-  List<Expense> _items = [
-    Expense(1, DateTime.now(), "Car", 1000),
-    Expense(2, DateTime.now(), "Food", 645),
-    Expense(3, DateTime.now(), "Stuff", 788),
-  ];
+  List<Expense> _items = [];
+
+  double _totalExpense = 0;
 
   ExpenseDB _database;
 
@@ -22,6 +20,7 @@ class ExpenseModel extends Model {
     Future<List<Expense>> future = _database.getAllExpenses();
     future.then((list) {
       _items = list;
+      _totalExpense = _countTotalExpense();
       notifyListeners();
     });
   }
@@ -35,8 +34,14 @@ class ExpenseModel extends Model {
     return e.name + " for " + e.price.toString() + "\n" + e.date.toString();
   }
 
-  void removeAtIndex(int index) {
+  void deleteExpense(int index) {
+    _totalExpense -= _items[index].price;
+    final int id = _items[index].id;
     _items.removeAt(index);
+    Future<void> future = _database.deleteExpense(id);
+    future.then((_) {
+      load();
+    });
     notifyListeners();
   }
 
@@ -46,6 +51,18 @@ class ExpenseModel extends Model {
       load();
     });
     notifyListeners();
+  }
+
+  double _countTotalExpense() {
+    double totalExpense = 0;
+    for (var i in _items) {
+      totalExpense += i.price;
+    }
+    return totalExpense;
+  }
+
+  double getTotalExpense() {
+    return _totalExpense;
   }
 
 }
