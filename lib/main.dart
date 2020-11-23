@@ -1,5 +1,6 @@
 import 'package:expense_tracker/AddExpense.dart';
 import 'package:expense_tracker/ExpenseModel.dart';
+import 'package:expense_tracker/ExpensesPerMonth.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
-  double totalExpense = 0;
+  double totalExpense;
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +72,9 @@ class MyHomePage extends StatelessWidget {
                     child: FloatingActionButton(
                       heroTag: null,
                       onPressed: () {
-                        //Navigator.push(context, MaterialPageRoute(builder: (context) {return EditExpense(model);}));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {return ExpensesPerMonth(model);}));
                       },
-                      child: Icon(Icons.edit),
+                      child: Icon(Icons.list),
                     ),
                 ),
                 Spacer(

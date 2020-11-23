@@ -7,3 +7,12 @@ class Expense
 
   Expense(this.id, this.date, this.name, this.price);
 }
+
+class Month
+{
+  final int id;
+  final DateTime month;
+  final double expense;
+
+  Month(this.id, this.month, this.expense);
+}
