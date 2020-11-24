@@ -24,10 +24,9 @@ class _AddExpenseState extends State<AddExpense> {
             children: [
               TextFormField(
                 decoration: InputDecoration(
-                  icon: Icon(Icons.shopping_basket),
-                  hintText: "Bread",
-                  helperText: "Name of expense"
-                ),
+                    icon: Icon(Icons.shopping_basket),
+                    hintText: "Bread",
+                    helperText: "Name of expense"),
                 onSaved: (value) {
                   _name = value;
                 },
@@ -36,8 +35,7 @@ class _AddExpenseState extends State<AddExpense> {
                 decoration: InputDecoration(
                     icon: Icon(Icons.attach_money),
                     hintText: "3.5",
-                    helperText: "Cost of expense"
-                ),
+                    helperText: "Cost of expense"),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (double.tryParse(value) != null) {
@@ -66,7 +64,6 @@ class _AddExpenseState extends State<AddExpense> {
       ),
     );
   }
-
 }
 
 class AddExpense extends StatefulWidget {
@@ -75,5 +72,4 @@ class AddExpense extends StatefulWidget {
   AddExpense(this._model);
   @override
   State<StatefulWidget> createState() => _AddExpenseState(_model);
-
 }

@@ -46,39 +46,40 @@ class MyHomePage extends StatelessWidget {
                 } else {
                   index -= 1;
                   return Dismissible(
-                      //direction: DismissDirection.endToStart,
-                      key: Key(model.getKey(index)),
-                      background: Container(
-                        color: Colors.green,
-                        child: Align(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
+                    //direction: DismissDirection.endToStart,
+                    key: Key(model.getKey(index)),
+                    background: Container(
+                      color: Colors.green,
+                      child: Align(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.white,
                           ),
-                          alignment: Alignment.centerLeft,
                         ),
+                        alignment: Alignment.centerLeft,
                       ),
-                      secondaryBackground: Container(
-                        color: Colors.red,
-                        child: Align(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.delete,
-                              color: Colors.white,
-                            ),
+                    ),
+                    secondaryBackground: Container(
+                      color: Colors.red,
+                      child: Align(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.white,
                           ),
-                          alignment: Alignment.centerRight,
                         ),
+                        alignment: Alignment.centerRight,
                       ),
-                      child: ListTile(
-                        title: Text(model.getText(index)),
-                      ),
-                      confirmDismiss: (direction) async => confirm(direction, context, "$index", model, index),
-                    );
+                    ),
+                    child: ListTile(
+                      title: Text(model.getText(index)),
+                    ),
+                    confirmDismiss: (direction) async =>
+                        confirm(direction, context, "$index", model, index),
+                  );
                 }
               },
               separatorBuilder: (context, index) => Divider(),
@@ -117,7 +118,7 @@ class MyHomePage extends StatelessWidget {
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                                  return AddExpense(model);
+                              return AddExpense(model);
                             }));
                           },
                           child: Icon(Icons.add),
@@ -131,43 +132,42 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-Future<bool> confirm(direction, context, String text, ExpenseModel model, int index) async {
-    if (direction == DismissDirection.endToStart) {
-      final bool res = await showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              content: Text(
-                  model.getTextToDelete(index)),
-                  //"Are you sure you want to delete $text?"),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text(
-                    "Cancel",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
+Future<bool> confirm(
+    direction, context, String text, ExpenseModel model, int index) async {
+  if (direction == DismissDirection.endToStart) {
+    final bool res = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Text(model.getTextToDelete(index)),
+            //"Are you sure you want to delete $text?"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text(
+                  "Cancel",
+                  style: TextStyle(color: Colors.black),
                 ),
-                FlatButton(
-                  child: Text(
-                    "Delete",
-                    style: TextStyle(color: Colors.red),
-                  ),
-                  onPressed: () {
-                    model.deleteExpense(index);
-                    Navigator.of(context).pop();
-                  },
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
+                child: Text(
+                  "Delete",
+                  style: TextStyle(color: Colors.red),
                 ),
-              ],
-            );
-          });
-      return res;
-    } else {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) {
-            return EditExpense(model, index);
-          }));
-    }
+                onPressed: () {
+                  model.deleteExpense(index);
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
+    return res;
+  } else {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return EditExpense(model, index);
+    }));
+  }
 }

@@ -32,8 +32,7 @@ class _EditExpenseState extends State<EditExpense> {
                 decoration: InputDecoration(
                     icon: Icon(Icons.shopping_basket),
                     hintText: "Bread",
-                    helperText: "Name of expense"
-                ),
+                    helperText: "Name of expense"),
                 onSaved: (value) {
                   _newName = value;
                 },
@@ -43,8 +42,7 @@ class _EditExpenseState extends State<EditExpense> {
                 decoration: InputDecoration(
                     icon: Icon(Icons.attach_money),
                     hintText: "3.5",
-                    helperText: "Cost of expense"
-                ),
+                    helperText: "Cost of expense"),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (double.tryParse(value) != null) {
@@ -74,7 +72,6 @@ class _EditExpenseState extends State<EditExpense> {
       ),
     );
   }
-
 }
 
 class EditExpense extends StatefulWidget {
@@ -84,5 +81,4 @@ class EditExpense extends StatefulWidget {
   EditExpense(this._model, this._index);
   @override
   State<StatefulWidget> createState() => _EditExpenseState(_model, _index);
-
 }

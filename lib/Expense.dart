@@ -1,5 +1,4 @@
-class Expense
-{
+class Expense {
   final int id;
   final DateTime date;
   final String name;
@@ -8,8 +7,7 @@ class Expense
   Expense(this.id, this.date, this.name, this.price);
 }
 
-class Month
-{
+class Month {
   final int id;
   final DateTime month;
   final double expense;

@@ -38,13 +38,25 @@ class ExpenseModel extends Model {
 
   String getText(int index) {
     var e = _items[index];
-    String date = e.date.day.toString() + " " + monthToName(e.date.month) + " " + e.date.hour.toString() + ":" + e.date.minute.toString();
+    String date = e.date.day.toString() +
+        " " +
+        monthToName(e.date.month) +
+        " " +
+        e.date.hour.toString() +
+        ":" +
+        e.date.minute.toString();
     return e.name + " for " + e.price.toString() + "\n" + date;
   }
 
   String getTextPerMonth(int index) {
     var e = _monthItems[index];
-    return "Total " + e.expense.toString() + " spend " + " in\n" +  monthToName(e.month.month) + " of " + e.month.year.toString();
+    return "Total " +
+        e.expense.toString() +
+        " spend " +
+        " in\n" +
+        monthToName(e.month.month) +
+        " of " +
+        e.month.year.toString();
     //return "For " + monthToName(e.month.month) + " " + e.month.year.toString() + " spend " + e.expense.toString();
   }
 
@@ -115,47 +127,89 @@ class ExpenseModel extends Model {
   String monthToName(int month) {
     String monthName;
     switch (month) {
-      case 1 : {monthName = "January";}
-      break;
+      case 1:
+        {
+          monthName = "January";
+        }
+        break;
 
-      case 2 : {monthName = "February";}
-      break;
+      case 2:
+        {
+          monthName = "February";
+        }
+        break;
 
-      case 3 : {monthName = "March";}
-      break;
+      case 3:
+        {
+          monthName = "March";
+        }
+        break;
 
-      case 4 : {monthName = "April";}
-      break;
+      case 4:
+        {
+          monthName = "April";
+        }
+        break;
 
-      case 5 : {monthName = "May";}
-      break;
+      case 5:
+        {
+          monthName = "May";
+        }
+        break;
 
-      case 6 : {monthName = "June";}
-      break;
+      case 6:
+        {
+          monthName = "June";
+        }
+        break;
 
-      case 7 : {monthName = "July";}
-      break;
+      case 7:
+        {
+          monthName = "July";
+        }
+        break;
 
-      case 8 : {monthName = "August";}
-      break;
+      case 8:
+        {
+          monthName = "August";
+        }
+        break;
 
-      case 9 : {monthName = "September";}
-      break;
+      case 9:
+        {
+          monthName = "September";
+        }
+        break;
 
-      case 10 : {monthName = "October";}
-      break;
+      case 10:
+        {
+          monthName = "October";
+        }
+        break;
 
-      case 11 : {monthName = "November";}
-      break;
+      case 11:
+        {
+          monthName = "November";
+        }
+        break;
 
-      case 12: {monthName = "December";}
-      break;
+      case 12:
+        {
+          monthName = "December";
+        }
+        break;
     }
     return monthName;
   }
 
   String getTextToDelete(int index) {
     Expense item = _items[index];
-    return "Are you sure you want to delete \n" + item.name + " for " + monthToName(item.date.month) + " " + item.date.day.toString() + "?";
+    return "Are you sure you want to delete \n" +
+        item.name +
+        " for " +
+        monthToName(item.date.month) +
+        " " +
+        item.date.day.toString() +
+        "?";
   }
 }
