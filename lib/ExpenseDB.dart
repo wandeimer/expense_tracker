@@ -79,4 +79,16 @@ class ExpenseDB {
       db.rawDelete("DELETE FROM ExpensesPerMonth WHERE date = ?", ["$month"]);
     }
   }
+
+  Future<Expense> getItemToEdit(int id) async {
+    Database db = await database;
+    List<Map> query = await db.rawQuery("SELECT * FROM Expenses WHERE id = ?;", ["$id"]);
+    Expense item = Expense(query[0]["id"], DateTime.parse(query[0]["date"]), query[0]["name"], query[0]["price"]);
+    return item;
+  }
+
+  Future<void> updateExpense(int id, String newName, double newPrice) async {
+    Database db = await database;
+    db.rawUpdate("UPDATE Expenses Set name = ?, price = ? WHERE id = ?", ["$newName", "$newPrice", "$id"]);
+  }
 }
