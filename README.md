@@ -9,6 +9,7 @@
 </p>
 <p align="center">
   <img src=https://github.com/wandeimer/expense_tracker/raw/master/screenshots/per_month.jpeg width="225" height="374" title="hover text">
+  <img src=https://github.com/wandeimer/expense_tracker/raw/master/screenshots/swipe.jpeg width="225" height="374" title="hover text">
   <img src=https://github.com/wandeimer/expense_tracker/raw/master/screenshots/delete_confirmation.jpeg width="225" height="374" title="hover text">
 </p>
 
