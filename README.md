@@ -11,7 +11,6 @@
   <img src=https://github.com/wandeimer/expense_tracker/raw/master/screenshots/per_month.jpeg width="225" height="374" title="hover text">
   <img src=https://github.com/wandeimer/expense_tracker/raw/master/screenshots/delete_confirmation.jpeg width="225" height="374" title="hover text">
 </p>
-## Getting Started
 
 On Flutter, make an application - an expense tracker. The application must:
 
