@@ -1,12 +1,16 @@
 # expense_tracker
 
-Expense tracker
-![main_page](https://github.com/wandeimer/expense_tracker/raw/master/screenshots/main_page.PNG)
-![add_page](https://github.com/wandeimer/expense_tracker/raw/master/screenshots/add_page.png)
-![per_month](https://github.com/wandeimer/expense_tracker/raw/master/screenshots/per_month.png)
-![editing_page](https://github.com/wandeimer/expense_tracker/blob/master/screenshots/editing_page.png)
-![delete_confirmation](https://github.com/wandeimer/expense_tracker/blob/master/screenshots/delete_confirmation.png)
 
+
+<p align="center">
+  <img src=https://github.com/wandeimer/expense_tracker/raw/master/screenshots/main_page.jpeg width="150" height="249" title="hover text">
+  <img src=https://github.com/wandeimer/expense_tracker/raw/master/screenshots/add_page.jpeg width="150" height="249" title="hover text">
+  <img src=https://github.com/wandeimer/expense_tracker/raw/master/screenshots/editing_page.jpeg width="150" height="249" title="hover text">
+</p>
+<p align="center">
+  <img src=https://github.com/wandeimer/expense_tracker/raw/master/screenshots/per_month.jpeg width="150" height="249" title="hover text">
+  <img src=https://github.com/wandeimer/expense_tracker/raw/master/screenshots/delete_confirmation.jpeg width="150" height="249" title="hover text">
+</p>
 ## Getting Started
 
 On Flutter, make an application - an expense tracker. The application must:
